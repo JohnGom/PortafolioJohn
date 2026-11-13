@@ -9,17 +9,28 @@ import { useI18n } from "@/lib/i18n/i18n-context";
 import { interpolate } from "@/lib/i18n/translations";
 import { ArrowRight } from "lucide-react";
 
-const featuredProjectSlugs = ["ends", "wellsite", "copa", "ensm"] as const;
+const featuredProjectSlugs = [
+  { slug: "tacticalboard", variant: "personal" as const },
+  { slug: "wellsite", variant: "professional" as const },
+  { slug: "copa", variant: "professional" as const },
+  { slug: "ensm", variant: "professional" as const },
+];
 
 export default function Home() {
   const { t } = useI18n();
-  const featuredProjects = featuredProjectSlugs.map((slug) => ({
-    slug,
-    name: t.projects[slug].name,
-    description: t.projects[slug].description,
-    stack: t.projects[slug].stack,
-    impact: t.projects[slug].impact,
-  }));
+  const featuredProjects = featuredProjectSlugs.map(({ slug, variant }) => {
+    const source = variant === "personal" ? t.personalProjects[slug as keyof typeof t.personalProjects] : t.projects[slug as keyof typeof t.projects];
+    return {
+      slug,
+      name: source.name,
+      description: source.description,
+      stack: source.stack,
+      impact: source.impact,
+      variant,
+      demoUrl: variant === "personal" ? (source as typeof t.personalProjects[keyof typeof t.personalProjects]).demoUrl : undefined,
+      repoUrl: variant === "personal" ? (source as typeof t.personalProjects[keyof typeof t.personalProjects]).repoUrl : undefined,
+    };
+  });
 
   return (
     <Layout>
@@ -27,13 +38,14 @@ export default function Home() {
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0 bg-grid opacity-30" />
+        <div className="absolute inset-0 bg-grid-animated opacity-60" />
 
         {/* Left-to-right gradient for readability */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, hsl(160 20% 3% / 0.95) 0%, hsl(160 20% 3% / 0.6) 40%, transparent 70%)",
+              "linear-gradient(to right, hsl(160 20% 3% / 0.98) 0%, hsl(160 20% 3% / 0.75) 45%, transparent 80%)",
           }}
         />
 
@@ -60,7 +72,7 @@ export default function Home() {
         </div>
 
         {/* Central glow */}
-        <div className="absolute left-1/2 top-[15%] -translate-x-1/2 pointer-events-none">
+        <div className="absolute left-1/2 top-[15%] -translate-x-1/2 pointer-events-none animate-pulse-glow">
           <svg width="800" height="200" viewBox="0 0 800 200" className="opacity-60">
             <defs>
               <filter id="glow-blur" x="-50%" y="-50%" width="200%" height="200%">
@@ -99,12 +111,12 @@ export default function Home() {
                 maskComposite: "exclude",
               }}
             />
-            <span className="font-mono text-xs text-primary">[ 2025 ]</span>
+            <span className="font-mono text-xs text-primary">{t.hero.card.year}</span>
             <h3 className="mt-3 text-sm font-medium text-foreground leading-snug">
-              Building <span className="italic font-serif">reliable</span> digital systems
+              {t.hero.card.title}
             </h3>
             <p className="mt-2 text-[11px] text-muted-foreground leading-relaxed">
-              Software developer focused on mobile, data systems, and frontend engineering.
+              {t.hero.card.description}
             </p>
           </div>
         </div>
@@ -132,7 +144,7 @@ export default function Home() {
               <Button
                 asChild
                 size="lg"
-                className="font-mono rounded-full px-8 transition-transform hover:scale-105 glow-primary"
+                className="font-mono rounded-full px-8 transition-transform hover:scale-105 glow-primary btn-press"
               >
                 <Link to="/work">
                   {t.hero.cta}

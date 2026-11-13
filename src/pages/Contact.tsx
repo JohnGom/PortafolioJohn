@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useI18n } from "@/lib/i18n/i18n-context";
 
 const socialLinks = [
-  { href: "https://github.com/zemog1916", icon: Github, label: "GitHub", handle: "@zemog1916" },
+  { href: "https://github.com/johngom", icon: Github, label: "GitHub", handle: "@johngom" },
   { href: "https://linkedin.com/in/zemog1916", icon: Linkedin, label: "LinkedIn", handle: "/in/zemog1916" },
   { href: "mailto:zemog1916@gmail.com", icon: Mail, label: "Email", handle: "zemog1916@gmail.com" },
 ];
@@ -24,16 +24,46 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
 
-    toast({
-      title: t.contactPage.toastTitle,
-      description: t.contactPage.toastDescription,
-    });
+    // Set reply-to address so you can respond directly to the sender
+    const userEmail = formData.get("email");
+    if (userEmail) {
+      formData.set("_replyto", userEmail as string);
+    }
 
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    try {
+      const response = await fetch("https://formspree.io/f/moedjdky", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast({
+          title: t.contactPage.toastTitle,
+          description: t.contactPage.toastDescription,
+        });
+        form.reset();
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      toast({
+        title: "Error",
+        description: "Could not send the message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -55,7 +85,12 @@ export default function Contact() {
             <div>
               <CodeDivider label={t.contactPage.sendMessage} />
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                action="https://formspree.io/f/moedjdky"
+                method="POST"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
                 <div className="space-y-2">
                   <Label htmlFor="name" className="font-mono text-sm">
                     <span className="text-primary">//</span> {t.contactPage.name}
@@ -81,6 +116,7 @@ export default function Contact() {
                     required
                     className="bg-card border-border font-mono text-sm"
                   />
+                  <input type="hidden" name="_replyto" />
                 </div>
 
                 <div className="space-y-2">

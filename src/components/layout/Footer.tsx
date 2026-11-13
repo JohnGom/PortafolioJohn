@@ -4,7 +4,7 @@ import { useI18n } from "@/lib/i18n/i18n-context";
 import { interpolate } from "@/lib/i18n/translations";
 
 const socialLinks = [
-  { href: "https://github.com/zemog1916", icon: Github, label: "GitHub" },
+  { href: "https://github.com/johngom", icon: Github, label: "GitHub" },
   { href: "https://linkedin.com/in/zemog1916", icon: Linkedin, label: "LinkedIn" },
   { href: "mailto:zemog1916@gmail.com", icon: Mail, label: "Email" },
 ];

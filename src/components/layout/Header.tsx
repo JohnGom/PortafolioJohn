@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { Logo } from "@/components/Logo";
 import {
   Sheet,
   SheetContent,
@@ -29,9 +30,11 @@ export function Header() {
         {/* Logo */}
         <Link
           to="/"
-          className="font-mono text-sm font-medium text-primary hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2 font-mono text-sm font-medium text-primary hover:opacity-80 transition-opacity"
+          aria-label="John Gomez home"
         >
-          {"<john />"}
+          <Logo className="h-7 w-7" />
+          <span className="hidden sm:inline">{"<john />"}</span>
         </Link>
 
         {/* Desktop Navigation */}

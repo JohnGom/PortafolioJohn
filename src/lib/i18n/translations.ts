@@ -33,6 +33,12 @@ export const translations = {
       description:
         "A Medellín-based developer with 7+ years of experience building products that scale, perform, and deliver real impact. I work at the intersection of engineering, data, and mobile development.",
       cta: "View Work",
+      card: {
+        year: "[ 2026 ]",
+        title: "Building reliable digital systems",
+        description:
+          "Software developer focused on mobile, data systems, and frontend engineering.",
+      },
     },
 
     // Featured Work
@@ -46,6 +52,10 @@ export const translations = {
       description:
         "A selection of projects and platforms I've contributed to across mobile development, data systems, and frontend engineering. Each represents real challenges solved with measurable impact.",
       projectsLabel: "Projects",
+      professionalLabel: "Professional Experience",
+      personalLabel: "Personal Projects",
+      personalDescription:
+        "Side projects built to explore ideas, learn new technologies, and solve personal workflows. Each one is live and open for review.",
     },
 
     // About Page
@@ -68,6 +78,7 @@ export const translations = {
       skillsList: [
         "Mobile Development",
         "Frontend Engineering",
+        "AI Engineering",
         "Data Systems",
         "API Design",
         "Technical Leadership",
@@ -121,7 +132,7 @@ export const translations = {
           "Data collection system for the National Mental Health Survey, enabling field teams to capture responses at scale using ODK-based mobile forms.",
         fullDescription:
           "Led the implementation of the data collection system for the National Mental Health Survey (ENSM). The platform allows field teams to capture structured responses using ODK-based mobile forms, ensuring data quality and traceability across thousands of interviews.",
-        stack: ["ODK", "JavaScript", "Node.js", "R"],
+        stack: ["ODK", "JavaScript", "Node.js", "R", "SQL Server", "Docker"],
         impact: "Successful national data collection with automated cleaning pipelines",
         challenges: [
           "Designing forms that handle complex survey skip logic",
@@ -242,6 +253,85 @@ export const translations = {
         ],
       },
     },
+
+    // Personal Projects
+    personalProjects: {
+      linkstore: {
+        name: "LinksStore",
+        description:
+          "Personal link manager with automatic metadata extraction, categories, instant search, personal notes, and light/dark mode.",
+        fullDescription:
+          "LinksStore is a personal link saving and discovery app. Paste any URL and the app automatically fetches the title, description, and favicon. Users can organize links with multiple categories, add personal notes, and find anything instantly through search.",
+        stack: ["Astro", "Preact", "PostgreSQL", "Drizzle ORM", "Tailwind CSS", "Docker"],
+        impact: "Live personal productivity tool used to organize and rediscover useful links",
+        challenges: [
+          "Building automatic metadata extraction from arbitrary URLs",
+          "Designing a fast, searchable link archive",
+          "Implementing custom session-based authentication",
+          "Deploying the full stack with Docker",
+        ],
+        features: [
+          "Automatic title, description, and favicon extraction",
+          "Multiple categories per link",
+          "Instant search by name or domain",
+          "Personal notes on each link",
+          "Light and dark mode",
+          "Dockerized deployment",
+        ],
+        demoUrl: "https://links.zemog.qd.je/",
+        repoUrl: "https://github.com/JohnGom/LinkStore",
+      },
+      tacticalboard: {
+        name: "TacticalBoard",
+        description:
+          "Web-based football tactics platform with user accounts, saved boards, custom teams, and an interactive tactical editor.",
+        fullDescription:
+          "TacticalBoard is a web-first football tactics platform. Users can create accounts, build custom teams, design formations, position players freely, make substitutions, and save private boards to a PostgreSQL database.",
+        stack: ["React", "Vite", "TypeScript", "Fastify", "PostgreSQL", "Docker"],
+        impact: "Live tactical editor for football coaches and enthusiasts",
+        challenges: [
+          "Building an interactive drag-and-drop tactical editor",
+          "Managing board state persistence and restoration",
+          "Integrating email/password and optional Google authentication",
+          "Designing a clean monorepo structure with separate web and API packages",
+        ],
+        features: [
+          "Interactive tactical board editor",
+          "Formations and free player positioning",
+          "Substitutions and saved board state",
+          "Custom teams and real squad selection",
+          "Private boards tied to user accounts",
+          "Docker Compose deployment",
+        ],
+        demoUrl: "https://tacticalboard.zemog.qd.je/",
+        repoUrl: "https://github.com/JohnGom/TacticalBoard",
+      },
+      smallopenshorts: {
+        name: "SmallOpenShorts",
+        description:
+          "Minimal AI video clipping tool that turns long videos into viral-ready 9:16 shorts with subtitles and text hooks.",
+        fullDescription:
+          "SmallOpenShorts is a focused, self-hosted version of the OpenShorts open-source project. It turns long-form videos into vertical 9:16 clips for TikTok, Instagram Reels, and YouTube Shorts using AI-driven moment detection, automatic subtitles, and viral text hooks.",
+        stack: ["Python", "FastAPI", "FFmpeg", "Docker", "React"],
+        impact: "Self-hosted, open-source video clipping pipeline with no watermarks or limits",
+        challenges: [
+          "Integrating AI transcript analysis for viral clip detection",
+          "Building precise FFmpeg-based video cutting at second-level timestamps",
+          "Implementing 9:16 vertical reframing with subject tracking",
+          "Creating burned-in subtitles and timed hook overlays",
+        ],
+        features: [
+          "AI viral clip detection with Gemini",
+          "Word-level transcription with faster-whisper",
+          "Automatic 9:16 vertical reframing",
+          "Burned-in subtitles and viral hooks",
+          "Docker-based self-hosting",
+          "YouTube and local video ingestion",
+        ],
+        demoUrl: "https://shorts.zemog.qd.je/",
+        repoUrl: "https://github.com/JohnGom/SmallOpenShorts",
+      },
+    },
   },
 
   es: {
@@ -276,6 +366,12 @@ export const translations = {
       description:
         "Desarrollador con sede en Medellín y más de 7 años de experiencia construyendo productos que escalan, rinden y generan impacto real. Trabajo en la intersección entre ingeniería, datos y desarrollo móvil.",
       cta: "Ver Proyectos",
+      card: {
+        year: "[ 2026 ]",
+        title: "Construyendo sistemas digitales confiables",
+        description:
+          "Desarrollador de software enfocado en móvil, sistemas de datos e ingeniería frontend.",
+      },
     },
 
     // Featured Work
@@ -289,6 +385,10 @@ export const translations = {
       description:
         "Una selección de proyectos y plataformas en los que he contribuido en desarrollo móvil, sistemas de datos e ingeniería frontend. Cada uno representa desafíos reales resueltos con impacto medible.",
       projectsLabel: "Proyectos",
+      professionalLabel: "Experiencia Profesional",
+      personalLabel: "Proyectos Personales",
+      personalDescription:
+        "Proyectos personales construidos para explorar ideas, aprender nuevas tecnologías y resolver flujos de trabajo propios. Cada uno está en línea y abierto para revisión.",
     },
 
     // About Page
@@ -311,6 +411,7 @@ export const translations = {
       skillsList: [
         "Desarrollo Móvil",
         "Ingeniería Frontend",
+        "Ingeniería de IA",
         "Sistemas de Datos",
         "Diseño de APIs",
         "Liderazgo Técnico",
@@ -364,7 +465,7 @@ export const translations = {
           "Sistema de recolección de datos para la Encuesta Nacional de Salud Mental, permitiendo a los equipos de campo capturar respuestas a escala usando formularios móviles basados en ODK.",
         fullDescription:
           "Lideré la implementación del sistema de recolección de datos de la Encuesta Nacional de Salud Mental (ENSM). La plataforma permite a los equipos de campo capturar respuestas estructuradas usando formularios móviles basados en ODK, asegurando calidad y trazabilidad de datos en miles de entrevistas.",
-        stack: ["ODK", "JavaScript", "Node.js", "R"],
+        stack: ["ODK", "JavaScript", "Node.js", "R", "SQL Server", "Docker"],
         impact: "Recolección nacional exitosa con pipelines automáticos de depuración",
         challenges: [
           "Diseñar formularios con lógica compleja de salto",
@@ -483,6 +584,85 @@ export const translations = {
           "Descubrimiento basado en ubicación",
           "Flujos MVP de marketplace",
         ],
+      },
+    },
+
+    // Personal Projects
+    personalProjects: {
+      linkstore: {
+        name: "LinksStore",
+        description:
+          "Gestor personal de enlaces con extracción automática de metadatos, categorías, búsqueda instantánea, notas personales y modo claro/oscuro.",
+        fullDescription:
+          "LinksStore es una aplicación para guardar y redescubrir enlaces personales. Pega cualquier URL y la app obtiene automáticamente el título, la descripción y el favicon. Los usuarios pueden organizar enlaces en múltiples categorías, agregar notas personales y encontrar todo al instante mediante búsqueda.",
+        stack: ["Astro", "Preact", "PostgreSQL", "Drizzle ORM", "Tailwind CSS", "Docker"],
+        impact: "Herramienta personal de productividad en línea para organizar y redescubrir enlaces útiles",
+        challenges: [
+          "Construir extracción automática de metadatos desde URLs arbitrarias",
+          "Diseñar un archivo de enlaces rápido y buscable",
+          "Implementar autenticación propia basada en sesiones",
+          "Desplegar el stack completo con Docker",
+        ],
+        features: [
+          "Extracción automática de título, descripción y favicon",
+          "Múltiples categorías por enlace",
+          "Búsqueda instantánea por nombre o dominio",
+          "Notas personales en cada enlace",
+          "Modo claro y oscuro",
+          "Despliegue con Docker",
+        ],
+        demoUrl: "https://links.zemog.qd.je/",
+        repoUrl: "https://github.com/JohnGom/LinkStore",
+      },
+      tacticalboard: {
+        name: "TacticalBoard",
+        description:
+          "Plataforma web de tácticas de fútbol con cuentas de usuario, tableros guardados, equipos personalizados y un editor táctico interactivo.",
+        fullDescription:
+          "TacticalBoard es una plataforma web de tácticas de fútbol. Los usuarios pueden crear cuentas, construir equipos personalizados, diseñar formaciones, posicionar jugadores libremente, hacer sustituciones y guardar tableros privados en una base de datos PostgreSQL.",
+        stack: ["React", "Vite", "TypeScript", "Fastify", "PostgreSQL", "Docker"],
+        impact: "Editor táctico en línea para entrenadores y aficionados al fútbol",
+        challenges: [
+          "Construir un editor táctico interactivo con arrastrar y soltar",
+          "Gestionar la persistencia y restauración del estado de los tableros",
+          "Integrar autenticación por email/contraseña y Google opcional",
+          "Diseñar una estructura limpia de monorepo con paquetes separados para web y API",
+        ],
+        features: [
+          "Editor táctico interactivo",
+          "Formaciones y posicionamiento libre de jugadores",
+          "Sustituciones y guardado del estado del tablero",
+          "Equipos personalizados y selección de plantillas reales",
+          "Tableros privados vinculados a cuentas de usuario",
+          "Despliegue con Docker Compose",
+        ],
+        demoUrl: "https://tacticalboard.zemog.qd.je/",
+        repoUrl: "https://github.com/JohnGom/TacticalBoard",
+      },
+      smallopenshorts: {
+        name: "SmallOpenShorts",
+        description:
+          "Herramienta minimalista de clipping de video con IA que convierte videos largos en shorts verticales 9:16 listos para viralizar, con subtítulos y hooks de texto.",
+        fullDescription:
+          "SmallOpenShorts es una versión enfocada y autoalojada del proyecto open-source OpenShorts. Convierte videos largos en clips verticales 9:16 para TikTok, Instagram Reels y YouTube Shorts usando detección de momentos con IA, subtítulos automáticos y hooks de texto virales.",
+        stack: ["Python", "FastAPI", "FFmpeg", "Docker", "React"],
+        impact: "Pipeline open-source de clipping de video autoalojado, sin marcas de agua ni límites",
+        challenges: [
+          "Integrar análisis de transcripciones con IA para detectar clips virales",
+          "Construir corte preciso de video con FFmpeg a nivel de segundos",
+          "Implementar reencuadre vertical 9:16 con seguimiento de sujeto",
+          "Crear subtítulos integrados y overlays de hooks temporizados",
+        ],
+        features: [
+          "Detección de clips virales con Gemini",
+          "Transcripción a nivel de palabra con faster-whisper",
+          "Reencuadre vertical 9:16 automático",
+          "Subtítulos integrados y hooks virales",
+          "Autoalojamiento con Docker",
+          "Ingesta de video desde YouTube o archivos locales",
+        ],
+        demoUrl: "https://shorts.zemog.qd.je/",
+        repoUrl: "https://github.com/JohnGom/SmallOpenShorts",
       },
     },
   },

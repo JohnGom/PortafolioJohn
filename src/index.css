@@ -147,10 +147,19 @@
 
   /* Technical grid pattern background */
   .bg-grid {
-    background-image: 
+    background-image:
       linear-gradient(hsl(0 0% 18% / 0.5) 1px, transparent 1px),
       linear-gradient(90deg, hsl(0 0% 18% / 0.5) 1px, transparent 1px);
     background-size: 50px 50px;
+  }
+
+  /* Animated grid background */
+  .bg-grid-animated {
+    background-image:
+      linear-gradient(hsl(0 0% 18% / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 18% / 0.4) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
   }
 
   /* Hover lift effect for cards */
@@ -182,4 +191,51 @@
   .stagger-2 { animation-delay: 0.2s; }
   .stagger-3 { animation-delay: 0.3s; }
   .stagger-4 { animation-delay: 0.4s; }
+
+  /* Slow pulse glow for hero */
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 8s ease-in-out infinite;
+  }
+
+  /* Subtle float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Photo zoom on hover */
+  .photo-zoom {
+    @apply overflow-hidden;
+  }
+
+  .photo-zoom img {
+    @apply transition-transform duration-500 ease-out;
+  }
+
+  .photo-zoom:hover img {
+    @apply scale-[1.03];
+  }
+
+  /* Button press effect */
+  .btn-press {
+    @apply transition-all duration-150;
+  }
+
+  .btn-press:active {
+    @apply scale-95;
+  }
+
+  /* Section divider line */
+  .section-line {
+    @apply h-px bg-gradient-to-r from-transparent via-border to-transparent;
+  }
 }

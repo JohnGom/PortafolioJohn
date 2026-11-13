@@ -15,9 +15,10 @@ const stack = [
   "R",
   "SQL Server",
   "MySQL",
-  "NoSQL",
+  "PostgreSql",
   "ODK",
   "Git",
+  "Docker",
 ];
 
 export default function About() {
@@ -39,8 +40,12 @@ export default function About() {
             <div className="lg:col-span-2 space-y-6">
               {/* Developer Photo */}
               <div className="mb-8 opacity-0 animate-fade-in-up stagger-1">
-                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-lg overflow-hidden border-2 border-primary/30 transition-all duration-300 hover:border-primary bg-card flex items-center justify-center">
-                  <span className="font-mono text-4xl text-primary">JG</span>
+                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-lg overflow-hidden border-2 border-primary/30 transition-all duration-300 hover:border-primary photo-zoom">
+                  <img
+                    src="/perfil.png"
+                    alt="John Harvey Gomez Vega"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 

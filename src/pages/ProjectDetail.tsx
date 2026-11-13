@@ -7,16 +7,52 @@ import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n/i18n-context";
 import type { Translations } from "@/lib/i18n/translations";
 
-type ProjectSlug = keyof Translations["en"]["projects"];
+type ProfessionalSlug = keyof Translations["en"]["projects"];
+type PersonalSlug = keyof Translations["en"]["personalProjects"];
+
+type ProjectVariant = "professional" | "personal";
+
+interface ProjectData {
+  name: string;
+  fullDescription: string;
+  stack: string[];
+  impact: string;
+  challenges: string[];
+  features: string[];
+  variant: ProjectVariant;
+  demoUrl?: string;
+  repoUrl?: string;
+}
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useI18n();
 
-  const validSlugs = Object.keys(t.projects) as ProjectSlug[];
-  const project = slug && validSlugs.includes(slug as ProjectSlug)
-    ? t.projects[slug as ProjectSlug]
-    : null;
+  const professionalSlugs = Object.keys(t.projects) as ProfessionalSlug[];
+  const personalSlugs = Object.keys(t.personalProjects) as PersonalSlug[];
+
+  let project: ProjectData | null = null;
+
+  if (slug && professionalSlugs.includes(slug as ProfessionalSlug)) {
+    const p = t.projects[slug as ProfessionalSlug];
+    project = {
+      ...p,
+      variant: "professional",
+    };
+  } else if (slug && personalSlugs.includes(slug as PersonalSlug)) {
+    const p = t.personalProjects[slug as PersonalSlug];
+    project = {
+      name: p.name,
+      fullDescription: p.fullDescription,
+      stack: p.stack,
+      impact: p.impact,
+      challenges: p.challenges,
+      features: p.features,
+      variant: "personal",
+      demoUrl: p.demoUrl,
+      repoUrl: p.repoUrl,
+    };
+  }
 
   if (!project) {
     return (
@@ -58,9 +94,16 @@ export default function ProjectDetail() {
 
           {/* Project Header */}
           <div className="mb-12 opacity-0 animate-fade-in-up stagger-1">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {project.name}
-            </h1>
+            <div className="flex items-center gap-3 mb-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground">
+                {project.name}
+              </h1>
+              {project.variant === "personal" && (
+                <span className="inline-flex items-center px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 rounded-full">
+                  Personal
+                </span>
+              )}
+            </div>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               {project.fullDescription}
             </p>
@@ -115,14 +158,49 @@ export default function ProjectDetail() {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 pt-8 border-t border-border opacity-0 animate-fade-in-up stagger-4">
-            <Button variant="outline" className="font-mono" disabled>
-              <Github className="mr-2 h-4 w-4" />
-              {t.projectDetail.viewCode}
-            </Button>
-            <Button variant="outline" className="font-mono" disabled>
-              <ExternalLink className="mr-2 h-4 w-4" />
-              {t.projectDetail.liveDemo}
-            </Button>
+            {project.variant === "personal" ? (
+              <>
+                {project.repoUrl && (
+                  <Button
+                    variant="outline"
+                    className="font-mono"
+                    asChild
+                  >
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="mr-2 h-4 w-4" />
+                      {t.projectDetail.viewCode}
+                    </a>
+                  </Button>
+                )}
+                {project.demoUrl && (
+                  <Button className="font-mono" asChild>
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      {t.projectDetail.liveDemo}
+                    </a>
+                  </Button>
+                )}
+              </>
+            ) : (
+              <>
+                <Button variant="outline" className="font-mono" disabled>
+                  <Github className="mr-2 h-4 w-4" />
+                  {t.projectDetail.viewCode}
+                </Button>
+                <Button variant="outline" className="font-mono" disabled>
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  {t.projectDetail.liveDemo}
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </section>
